@@ -1,0 +1,578 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.1 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- http-equiv="X-UA-Compatible" content="IE=edge" -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
+<!-- begin _includes/seo.html -->
+<!-- DEBUG: page.path=squad.md, page.url=/squad/, page.permalink=/squad/, page.name=squad.md --><title>Squad | Fulham FC players &amp; availability - Fulham Data Bot</title>
+<meta name="description" content="The current Fulham first-team squad with shirt numbers, positions and injury or suspension news.">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Fulham Data Bot">
+<meta property="og:title" content="Squad | Fulham FC players &amp; availability">
+<meta property="og:url" content="https://fulhamfc.bot/squad/">
+
+
+  <meta property="og:description" content="The current Fulham first-team squad with shirt numbers, positions and injury or suspension news.">
+
+
+
+  <meta property="og:image" content="https://fulhamfc.bot/assets/images/meta_card.png">
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="https://fulhamfc.bot/squad/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fulham Data Bot Feed">
+
+
+<!-- Handheld Friendly -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="manifest" href="/assets/images/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#CC0000">
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+<meta name="msapplication-TileColor" content="#CC0000">
+<meta name="msapplication-config" content="/assets/images/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Fulham Data Bot" href="https://fulhamfc.bot/feed.xml" />
+
+
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/site.webmanifest">
+<link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#CC0000">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="theme-color" content="#ffffff">
+
+
+
+<!-- end custom head snippets -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="layout--default">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">
+          Fulham Data Bot
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+                <a
+                  href="/players/"
+                  
+                  
+                >Players</a>
+              </li><li class="masthead__menu-item">
+                <a
+                  href="/about/"
+                  
+                  
+                >About</a>
+              </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+<div class="container">
+  <div class="minimal-header">
+    <h1 class="minimal-headline">Who's in the squad?</h1>
+    <p class="minimal-subhead">Fulham's first-team squad, according to <a href="https://www.espn.com/soccer/team/squad/_/id/370/fulham">ESPN</a>, with injury and suspension news from the <a href="https://fantasy.premierleague.com/">Fantasy Premier League</a> feed.</p>
+  </div>
+
+  <h2 class="stat-group">Availability</h2>
+  
+  <div class="table-scroll">
+  <table class="data-table">
+    <thead><tr><th class="left">Player</th><th>Status</th><th class="left">News</th></tr></thead>
+    <tbody>
+      
+      <tr>
+        <td class="left">Tom Cairney</td>
+        <td><span class="status-pill status-i">Injured</span></td>
+        <td class="left">Knee injury - Expected back 10 Oct</td>
+      </tr>
+      
+    </tbody>
+  </table>
+  </div>
+  
+
+  
+  
+    <h2 class="stat-group">Goalkeepers</h2>
+    <div class="roster-grid">
+      
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Bernd Leno</div>
+          <div class="player-details">
+            Goalkeeper | Age 34 | Germany
+          </div>
+          <div class="player-jersey">#1</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Benjamin Lecomte</div>
+          <div class="player-details">
+            Goalkeeper | Age 35 | France
+          </div>
+          <div class="player-jersey">#23</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Alex Borto</div>
+          <div class="player-details">
+            Goalkeeper | Age 22 | USA
+          </div>
+          <div class="player-jersey">#36</div>
+        </div>
+      
+    </div>
+  
+    <h2 class="stat-group">Defenders</h2>
+    <div class="roster-grid">
+      
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Kenny Tete</div>
+          <div class="player-details">
+            Defender | Age 30 | Netherlands
+          </div>
+          <div class="player-jersey">#2</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Calvin Bassey</div>
+          <div class="player-details">
+            Defender | Age 26 | Nigeria
+          </div>
+          <div class="player-jersey">#3</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Jorge Cuenca</div>
+          <div class="player-details">
+            Defender | Age 26 | Spain
+          </div>
+          <div class="player-jersey">#4</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Joachim Andersen</div>
+          <div class="player-details">
+            Defender | Age 30 | Denmark
+          </div>
+          <div class="player-jersey">#5</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Timothy Castagne</div>
+          <div class="player-details">
+            Defender | Age 30 | Belgium
+          </div>
+          <div class="player-jersey">#21</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">David Affengruber</div>
+          <div class="player-details">
+            Defender | Age 25 | Austria
+          </div>
+          <div class="player-jersey">#22</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Ryan Sessegnon</div>
+          <div class="player-details">
+            Midfielder | Age 26 | England
+          </div>
+          <div class="player-jersey">#30</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Antonee Robinson</div>
+          <div class="player-details">
+            Defender | Age 29 | USA
+          </div>
+          <div class="player-jersey">#33</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Bradley Slade</div>
+          <div class="player-details">
+            Defender | England
+          </div>
+          <div class="player-jersey">#40</div>
+        </div>
+      
+    </div>
+  
+    <h2 class="stat-group">Midfielders</h2>
+    <div class="roster-grid">
+      
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Harrison Reed</div>
+          <div class="player-details">
+            Midfielder | Age 31 | England
+          </div>
+          <div class="player-jersey">#6</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">César Palacios</div>
+          <div class="player-details">
+            Midfielder | Age 21 | Spain
+          </div>
+          <div class="player-jersey">#8</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+            <div class="player-flag player-flag-injured">INJURED</div>
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Tom Cairney</div>
+          <div class="player-details">
+            Midfielder | Age 35 | Scotland
+          </div>
+          <div class="player-jersey">#10</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Kevin</div>
+          <div class="player-details">
+            Forward | Age 23 | Brazil
+          </div>
+          <div class="player-jersey">#11</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Oscar Bobb</div>
+          <div class="player-details">
+            Midfielder | Age 23 | Norway
+          </div>
+          <div class="player-jersey">#14</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Hugo Larsson</div>
+          <div class="player-details">
+            Midfielder | Age 22 | Sweden
+          </div>
+          <div class="player-jersey">#15</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Sander Berge</div>
+          <div class="player-details">
+            Midfielder | Age 28 | Norway
+          </div>
+          <div class="player-jersey">#16</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Alex Iwobi</div>
+          <div class="player-details">
+            Forward | Age 30 | Nigeria
+          </div>
+          <div class="player-jersey">#17</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Shea Charles</div>
+          <div class="player-details">
+            Midfielder | Age 22 | Northern Ireland
+          </div>
+          <div class="player-jersey">#19</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Manuel Ángel</div>
+          <div class="player-details">
+            Midfielder | Age 22 | Spain
+          </div>
+          <div class="player-jersey">#20</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Josh King</div>
+          <div class="player-details">
+            Midfielder | Age 19 | England
+          </div>
+          <div class="player-jersey">#24</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Emile Smith Rowe</div>
+          <div class="player-details">
+            Midfielder | Age 26 | England
+          </div>
+          <div class="player-jersey">#32</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Chibuzo Nwoko</div>
+          <div class="player-details">
+            Midfielder | Age 20 | England
+          </div>
+          <div class="player-jersey">#34</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Macauley Zepa</div>
+          <div class="player-details">
+            Forward | Age 18 | France
+          </div>
+          <div class="player-jersey">#35</div>
+        </div>
+      
+    </div>
+  
+    <h2 class="stat-group">Forwards</h2>
+    <div class="roster-grid">
+      
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Gonzalo García</div>
+          <div class="player-details">
+            Forward | Age 22 | Spain
+          </div>
+          <div class="player-jersey">#7</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Rodrigo Muniz</div>
+          <div class="player-details">
+            Forward | Age 25 | Brazil
+          </div>
+          <div class="player-jersey">#9</div>
+        </div>
+      
+        <div class="stat-card player-card">
+          
+          <img src="/assets/images/placeholder-avatar.png" alt="" class="player-avatar" />
+          <div class="player-name">Jonah Kusi-Asare</div>
+          <div class="player-details">
+            Forward | Age 19 | Sweden
+          </div>
+          <div class="player-jersey">#18</div>
+        </div>
+      
+    </div>
+  
+</div>
+
+      
+    </div>
+
+
+    <div class="site-footer">
+  <div class="footer-content">
+    <div class="footer-main">
+      <div class="footer-info">
+        <h3 class="footer-title">Fulham Data Bot</h3>
+        <p class="footer-description">
+          A dashboard tracking Fulham FC's Premier League season with auto-updating results, the league table and player stats.
+        </p>
+        <div class="footer-links">
+          <a href="/about/" class="footer-link">About</a>
+          <a href="https://github.com/twallac10/fulhamfc-bot" class="footer-link">Code</a>
+          <a href="https://github.com/twallac10/fulhamfc-bot#data-storage-and-access" class="footer-link">Data</a>
+        </div>
+        <div class="footer-stats">
+          <div class="footer-meta">Updated: October 05, 2026 at 2 PM UK time</div>
+          <div class="footer-meta">Sources: ESPN, Fantasy Premier League</div>
+        </div>
+      </div>
+      <div class="footer-social">
+        <a href="https://github.com/twallac10/fulhamfc-bot" class="footer-social-link"><i class="fa-brands fa-fw fa-github"></i></a>
+        <a href="https://bsky.app/profile/fulhamfc-bot.bsky.social" class="footer-social-link" title="Follow on Bluesky">
+          <svg width="18" height="18" viewBox="0 0 600 530" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+            <path d="M135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2026 <a href="https://github.com/twallac10">Fulham Bot</a>.</p>
+    </div>
+  </div>
+</div>
+
+
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+  
+    <script src="/assets/js/mobile-nav.js"></script>
+  
+
+
+  </body>
+</html>
