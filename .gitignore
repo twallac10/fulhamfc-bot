@@ -1,0 +1,35 @@
+_site/
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+
+.DS_Store
+
+# Environment and credentials
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+.aws/
+credentials
+
+# Generated data (rebuilt by the pipeline and stored on S3)
+data/
+_data/*
+!_data/navigation.yml
+
+# Compiled CSS
+assets/css/style.css
+
+# Claude Code local settings
+.claude/settings.local.json
+.bundle/

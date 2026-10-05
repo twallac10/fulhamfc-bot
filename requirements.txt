@@ -1,0 +1,9 @@
+requests
+pandas
+pyarrow
+boto3
+beautifulsoup4
+lxml
+python-dateutil
+atproto>=0.0.55
+pytest
