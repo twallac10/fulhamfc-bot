@@ -1,0 +1,100 @@
+# Site settings for Fulham Data Bot.
+#
+# This file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. Restart the server after editing it.
+
+title: Fulham Data Bot
+name: Fulham Data Bot
+owner: Fulham Bot
+owner_url: https://github.com/twallac10
+headline: How are Fulham doing?
+email: twallac10@example.com
+description: >- # this means to ignore newlines until "baseurl:"
+  An auto-updating Premier League dashboard that answers the question: How are Fulham doing?
+
+# Served from GitHub Pages as a project site. If you point a custom domain at
+# it (add a CNAME file), set url to that domain and baseurl to "".
+url: "https://twallac10.github.io"
+baseurl: "/fulhamfc-bot"
+
+# Bluesky account the bot posts to (shown in the footer)
+bluesky_handle: fulhamfc-bot.bsky.social
+
+# Optional Google Analytics 4 measurement ID, e.g. G-XXXXXXXXXX
+google_analytics_id: ""
+
+# SEO and social settings
+logo: ""
+og_image: /assets/images/meta_card.png
+github_username: twallac10
+
+# Site Author
+author: twallac10
+
+timezone: Europe/London
+
+# Build settings
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "default"
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+exclude:
+  - scripts
+  - tests
+  - data
+  - docs
+  - Dockerfile
+  - requirements.txt
+  - README.md
+  - SETUP.md
+  - SEASON_TRANSITION.md
+  - vendor
+  - LICENSE
+  - renovate.json
+  - Gemfile
+  - Gemfile.lock
+  - pytest.ini
+
+layout: single
+
+sass:
+  sass_dir: _sass
+  style: compressed  # or expanded for easier debugging
+  quiet_deps: true
+
+destination: ./_site
+
+# Masthead title
+masthead_title: "Fulham Data Bot"
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      share: true
+      related: true
+  - scope:
+      path: "index.markdown"
+    values:
+      layout: default
+
+# Scripts
+after_footer_scripts:
+  - "/assets/js/mobile-nav.js"
+
+# Footer
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/twallac10/fulhamfc-bot"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:twallac10@example.com"

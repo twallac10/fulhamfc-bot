@@ -1,0 +1,116 @@
+name: fetch
+
+on:
+  schedule:
+    - cron: '15 */3 * 8-12,1-5 *'  # every 3 hours, August-May (season)
+    - cron: '15 7 * 6,7 *'          # once a day in the summer break
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: fetch-data
+  cancel-in-progress: true
+
+jobs:
+  update_and_deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: read
+    container:
+      image: ghcr.io/twallac10/fulhamfc-bot:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Fix git ownership
+      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+    - name: Set up AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v6
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+
+    - name: Fetch league table
+      id: s01
+      continue-on-error: true
+      run: python scripts/01_fetch_league_table.py
+
+    - name: Fetch results and fixtures
+      id: s02
+      continue-on-error: true
+      run: python scripts/02_fetch_matches.py
+
+    - name: Build table by matchweek
+      id: s03
+      continue-on-error: true
+      run: python scripts/03_build_table_progression.py
+
+    - name: Fetch player stats
+      id: s04
+      continue-on-error: true
+      run: python scripts/04_fetch_player_stats.py
+
+    - name: Fetch squad and availability
+      id: s05
+      continue-on-error: true
+      run: python scripts/05_fetch_squad.py
+
+    - name: Load historical seasons (cached on S3)
+      id: s06
+      continue-on-error: true
+      run: python scripts/06_fetch_historical_seasons.py
+
+    - name: Create toplines summary
+      id: s07
+      continue-on-error: true
+      run: python scripts/07_create_toplines_summary.py
+
+    - name: Fetch news headlines
+      id: s08
+      continue-on-error: true
+      run: python scripts/08_fetch_news.py
+
+    - name: Check for script failures
+      run: |
+        failed=""
+        [ "${{ steps.s01.outcome }}" = "failure" ] && failed="$failed 01_fetch_league_table"
+        [ "${{ steps.s02.outcome }}" = "failure" ] && failed="$failed 02_fetch_matches"
+        [ "${{ steps.s03.outcome }}" = "failure" ] && failed="$failed 03_build_table_progression"
+        [ "${{ steps.s04.outcome }}" = "failure" ] && failed="$failed 04_fetch_player_stats"
+        [ "${{ steps.s05.outcome }}" = "failure" ] && failed="$failed 05_fetch_squad"
+        [ "${{ steps.s06.outcome }}" = "failure" ] && failed="$failed 06_fetch_historical_seasons"
+        [ "${{ steps.s07.outcome }}" = "failure" ] && failed="$failed 07_create_toplines_summary"
+        [ "${{ steps.s08.outcome }}" = "failure" ] && failed="$failed 08_fetch_news"
+        if [ -n "$failed" ]; then
+          echo "::error::The following scripts failed:$failed"
+          exit 1
+        fi
+        echo "All scripts completed successfully."
+
+    - name: Build Jekyll site
+      run: bundle exec jekyll build
+      env:
+        TZ: Europe/London
+        JEKYLL_ENV: production
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        publish_branch: gh-pages
+        force_orphan: false
+        allow_empty_commit: false

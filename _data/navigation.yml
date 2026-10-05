@@ -1,0 +1,8 @@
+# main links
+main:
+  - title: "Players"
+    url: /players/
+  - title: "Squad"
+    url: /squad/
+  - title: "About"
+    url: /about/
