@@ -27,7 +27,7 @@ SEASON_START_YEAR = 2026
 HISTORY_START_YEAR = 2001
 
 # Public site (used in Bluesky posts)
-SITE_URL = "https://twallac10.github.io/fulhamfc-bot"
+SITE_URL = "https://fulhamfc.bot"
 
 # AWS S3 Configuration
 S3_BUCKET = "fulhamfc-data"

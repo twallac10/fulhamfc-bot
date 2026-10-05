@@ -1,6 +1,6 @@
 # Fulham Team Tracker
 
-This repository feeds **Fulham Data Bot**, an auto-updating dashboard about Fulham FC's Premier League season. It is the football sibling of [Brewers Data Bot](https://github.com/twallac10/mkebrewers-bot), which is a fork of [Matt Stiles](https://mattstiles.me/)' [Dodgers Data Bot](https://dodgersdata.bot/). It uses the same architecture:
+This repository feeds **[Fulham Data Bot](https://fulhamfc.bot)**, an auto-updating dashboard about Fulham FC's Premier League season. It is the football sibling of [Brewers Data Bot](https://github.com/twallac10/mkebrewers-bot), which is a fork of [Matt Stiles](https://mattstiles.me/)' [Dodgers Data Bot](https://dodgersdata.bot/). It uses the same architecture:
 
 - **Python scripts** fetch and process the data.
 - **AWS S3** stores every output and the Bluesky bot's state.
@@ -86,7 +86,7 @@ SKIP_S3=1 python scripts/09_post_weekly_reports.py --type table --dry-run
 python -m pytest -q
 
 bundle install
-bundle exec jekyll serve   # http://localhost:4000/fulhamfc-bot/
+bundle exec jekyll serve   # http://localhost:4000/
 ```
 
 ## Setup

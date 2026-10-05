@@ -12,10 +12,9 @@ email: twallac10@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   An auto-updating Premier League dashboard that answers the question: How are Fulham doing?
 
-# Served from GitHub Pages as a project site. If you point a custom domain at
-# it (add a CNAME file), set url to that domain and baseurl to "".
-url: "https://twallac10.github.io"
-baseurl: "/fulhamfc-bot"
+# Served from GitHub Pages at the custom domain in CNAME.
+url: "https://fulhamfc.bot"
+baseurl: ""
 
 # Bluesky account the bot posts to (shown in the footer)
 bluesky_handle: fulhamfc-bot.bsky.social

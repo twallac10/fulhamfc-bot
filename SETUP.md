@@ -44,15 +44,26 @@ The workflows run inside `ghcr.io/twallac10/fulhamfc-bot:latest`. `build-image.y
 
 1. Run **Actions → fetch → Run workflow**. Its first successful run creates the `gh-pages` branch.
 2. **Settings → Pages → Build and deployment → Deploy from a branch → `gh-pages` / root.**
-3. The site will be at `https://twallac10.github.io/fulhamfc-bot/`.
+3. Under **Custom domain**, enter `fulhamfc.bot` (it's also in the `CNAME` file, which is deployed with the site). Once DNS resolves, tick **Enforce HTTPS**.
 
 The repository must be public for free Pages hosting and unlimited Actions minutes. The match-day workflow runs every 15 minutes.
 
-### Custom domain (optional)
+### DNS for fulhamfc.bot
 
-1. Add a `CNAME` file containing the domain (e.g. `fulhamdata.bot`) and point DNS at GitHub Pages, as described in the Brewers README.
-2. In `_config.yml`, set `url: "https://fulhamdata.bot"` and `baseurl: ""`.
-3. Update `SITE_URL` in `scripts/config.py` so Bluesky posts link to the new domain.
+At the domain registrar, add these records:
+
+```
+Type    Name    Value
+A       @       185.199.108.153
+A       @       185.199.109.153
+A       @       185.199.110.153
+A       @       185.199.111.153
+CNAME   www     twallac10.github.io
+```
+
+Check with `dig fulhamfc.bot +short`. It should list the four GitHub Pages IPs. It can take up to an hour to propagate, and GitHub then issues the HTTPS certificate. (`.bot` domains require HTTPS, so the site won't load over plain HTTP until the certificate is issued.)
+
+The domain is configured in three places: `CNAME`, `url` in `_config.yml`, and `SITE_URL` in `scripts/config.py` (used for links in Bluesky posts). If the domain ever changes, update all three.
 
 ## 5. Bluesky account
 
